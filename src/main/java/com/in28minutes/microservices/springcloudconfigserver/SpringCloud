@@ -1,0 +1,83 @@
+We already discussed about the challenges with microservice architectures.
+
+Here, we would introduce you to Spring Cloud and we will talk about various components under the umbrella of Spring Cloud which help us to provide solutions
+to the challenges we discussed. If you go to the homepage of Spring Cloud which is cloud.spring.io, it says Spring Cloud provides tools to quickly build some
+of the common patterns in distributed systems.
+
+To the typical problems which are present for distributed systems in the cloud, Spring Cloud provides a range of solutions. The important thing that you need to
+understand is Spring Cloud is not really one project as such. There are a wide variety of projects under the umbrella of Spring Cloud.
+On the Spring Cloud homepage if you scroll down further, you'd be able to see a huge variety of projects which are related to Spring Cloud.
+
+One of the important projects in Spring Cloud is Spring Cloud Netflix. Netflix was one of the organizations which started playing around with the microservices
+architecture very early. There are a wide range of components that Netflix has open sourced under the project Spring Cloud Netflix. Later in this course, we will
+be talking about a couple of them as well - Eureka, Hystrix and Zuul. Other than Spring Cloud Netflix, there are a wide range of projects under the umbrella of
+Spring Cloud. Some of them are -
+
+Spring Cloud Config - This provides a centralized configuration management.
+Spring Cloud Bus - This enables the microservices and the infrastructure components i.e. things like Config Server, things like API Gateway to talk to each other.
+In this course, we'll be using the Finchley M2 release of Spring Cloud.
+
+Now, let's take a quick look at the challenges which we discussed earlier and the projects in Spring Cloud that provide solutions to those challenges.
+
+One of the challenges we talked about earlier was Configuration Management.
+We talked about the fact that there would be multiple microservices, multiple environments for each of these microservices and multiple instances in many of those environments.
+This would mean that there is a lot of configuration for these microservices that the operations team needs to manage.
+
+Spring Cloud Config Server provides an approach where you can store all the configuration for all the different environments of all the microservices in a Git repository.
+So you can store all the configuration for different environments of different microservices in just one place, in a centralized location, and Spring Cloud Config Server
+can be used to expose that configuration to all the microservices. This helps us to keep the configuration in one place and that makes it very easy to maintain the
+configuration for all microservices.
+
+The next challenge we talked about was the dynamic scale up and scale down.
+In the example you are looking at, there is a microservice called CurrencyCalculationService which is talking to the CurrencyExchangeService.
+As you can see in the diagram, there are multiple instances of the CurrencyExchangeService. And it's possible that at any point in time, new instances can be added in or removed out.
+
+And we would want the CurrencyCalculationService to be able to distribute the load between all the instances of the CurrencyExchangeService.
+We would want to be able to dynamically check what are the available instances of the CurrencyExchangeService and make sure that their load is distributed among all of them.
+
+The solution which we would be discussing in this course would be using a Naming Server, which is Eureka.
+So all the instances of all microservices would register with the Naming Server. So the naming server has two important features -
+
+One is service registration so all microservices can register with the microservice.
+The second one is service discovery. So in this example, the CurrencyCalculationService can ask the Eureka Naming Server to give the current instances of CurrencyExchangeService.
+And the naming service would provide those URLs to the CurrencyCalculationService. This helps to establish dynamic relationship between the CurrencyCalculationService and
+the instances of the CurrencyExchangeService.
+
+We will use Ribbon for client-side load balancing. That means the CurrencyCalculationService will host Ribbon. And it would make sure that the load is evenly distributed
+among the existing instances that it gets from the NamingServer.
+
+We'll also use Feign in the CurrencyCalculationService as a mechanism to write simple RESTful clients.
+
+The solutions for Visibility and Monitoring are Zipkin Distributed Tracing Server. We would use Spring Cloud Sleuth to assign a ID to a request across multiple components.
+And we would use Zipkin Distributed Tracing to trace a request across multiple components.
+
+One of the important things about microservices is these microservices have a lot of common features. For example, logging, security, analytics and things like that.
+You don't want to implement all these common features in every microservice. API Gateways provide great solutions to this kind of challenges.
+
+We will use a Netflix Zuul API Gateway in this course. We'll also implement fault tolerance using Hystrix. If a service is down, Hystrix helps us to configure a default response.
+
+In this video, we took a quick look at the various components which are present in Spring Cloud to provide solutions to the challenges, which we discussed earlier.
+The idea behind this video is to help you get a high-level big picture. We'll discuss about each of these components in detail as we take them one by one in the next steps.
+
+
+
+The Spring Cloud Config Server, Netflix Eureka Naming Server, Zuul API Gateway Server and the Zipkin Distributed Tracing Server, you would be using their default
+ports, which are for Spring Cloud Config Server, it's 8888, Naming server it's 8761, 8765, and 9411 respectively. This is one thing you need to be focused on,
+whenever you're creating a component, make sure that you're using the right port.
+
+
+
+The V2 section of the Microservices course:-
+
+Microservices evolved quickly and there has been a lot of evolution in microservices in the last three years and we would want to capture all that with this specific update.
+
+The important updates are:-
+
+We would be using the latest versions of Spring Boot and Spring Cloud in this specific section, and as part of the latest versions of Spring Boot and Spring Cloud
+you'd be using Spring Cloud LoadBalancer instead of Ribbon. In the earlier versions of Spring Boot and Spring Cloud before 2.3, Ribbon was the load balancer.
+
+However, we'd be using Spring Cloud LoadBalancer as the load balancer in this specific section.
+We'd be using Spring Cloud Gateway instead of Zuul and we'll be using Resilience4j instead of Hystrix as a circuit breaker.
+
+In the next section we'll be using Docker to Containerize Microservices. We'll be running all the microservices using Docker
+and Docker Compose and in the section after that we'll be jumping into Kubernetes. We'll be orchestrating all our Microservices with Kubernetes.

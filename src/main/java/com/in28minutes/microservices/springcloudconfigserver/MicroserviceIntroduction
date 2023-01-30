@@ -1,0 +1,30 @@
+In this important section of the course - Microservices with Spring Cloud, we would introduce you to Microservices. Why are Microservices needed?
+What are the challenges associated with them and how does Spring Cloud help us to solve them? We would implement a wide variety of Spring Cloud components.
+
+We talked about the fuzzy world of RESTful web service. With microservices, things get even more fuzzy. There is no one accepted definition of microservice.
+So definitions vary from a smaller one like this - "It's a small autonomous services that work together", to very long definitions which was given
+by Martin Fowler and James Lewis. It's like a 10-line definition on its own which says - "It's a style to develop a single application as a suite
+of small services, each running its own process, communicating with very lightweight mechanisms, things like HTTP, and these services are built
+around business capabilities, independently deployable by automated deployment, and there is a set of centralized management for these services.
+These services might be written using different programming languages, and maybe using variety of data storage technologies."
+
+These are just a couple from a lot of other definitions which are present for microservices. Before getting into world of what is a microservice,
+what is not a microservice, how to define it, and all that kind of stuff, let's get started with a few important things for a microservice.
+
+For me, microservices are basically services which are exposed by REST. In addition to that, you have small well-chosen deployable units with very well thought-out boundaries,
+and should be Cloud-enabled. So for me, the important parts are REST, having small deployable units which can be Cloud-enabled. What do I mean by Cloud-enabled?
+
+When you build microservices, this is how it would look i.e. instead of building one big monolith, you'd be building a set of smaller microservices.
+I'm showing five microservices in the picture. It might be 10, 15, 20, 100 or 1,000. So, it's a set of microservices with well-defined boundaries
+which are interacting with each other and are Cloud-enabled. That means I would be able to have multiple instances for each of these microservices.
+
+For example, we are looking at the diagram of a production deployment for a set of microservices.
+You can see that at this moment, there are two instances of Microservice1, four instances of Microservice2 and one instance of Microservice3.
+By Cloud-enabled I mean that, if there is more load on Microservice3, I should be able to easily bring up another instance of Microservice3.
+This should not involve a lot of configuration. I should be able to bring up an instance of Microservice3 or take down an instance of Microservice2
+without having huge problems. That's what I mean by Cloud-enabled.
+
+So, we already looked at RESTful web services. In the subsequent sections, we'll look at how to Cloud enable them, how to set up an architecture
+such that it would be able to dynamically adjust and be able to bring new instances up and take the older instances down.
+
+In this step, we had a high level overview of what we think about microservices. Next, we'll look at the challenges associated with Cloud enabling your RESTful web services.
